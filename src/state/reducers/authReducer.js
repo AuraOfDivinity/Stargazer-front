@@ -9,6 +9,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: true,
+                user: action.data.user
             }
         }
         default: {

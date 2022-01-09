@@ -8,11 +8,14 @@ import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-i
 import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup, Toast } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import { useDispatch, useSelector } from "react-redux";
+
 import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
 
 
 export default () => {
+  const dispatch = useDispatch();
   const [regData, setRegData] = useState({
     username: '',
     email: '',
@@ -20,6 +23,7 @@ export default () => {
   })
   const [eMessage, setEmessage] = useState('')
   const [showToast, setShowToast] = useState(false)
+  const [showSuccessToast, setShowSuccessToast] = useState(false)
 
   const handleRegister = () => {
     let valStatus = validate()
@@ -27,13 +31,16 @@ export default () => {
     if (valStatus) {
       axios.post('https://stargazer-back.herokuapp.com/api/auth/local/register', regData)
         .then(response => {
-          console.log(response)
+          if (response.status == 200) {
+            setShowSuccessToast(true)
+          }
         });
     }
 
   }
 
   const toggleDefaultToast = () => setShowToast(!showToast);
+  const toggleSuccessToast = () => setShowSuccessToast(!showSuccessToast);
 
   const validate = () => {
     if (regData.email == '') {
@@ -116,6 +123,16 @@ export default () => {
                   </Toast.Header>
                   <Toast.Body>
                     {eMessage}
+                  </Toast.Body>
+                </Toast>
+                <Toast show={showSuccessToast} onClose={toggleSuccessToast} className="my-3 bg-success" style={{ margin: '0 auto' }}>
+                  <Toast.Header className="text-primary" closeButton={false}>
+                    <FontAwesomeIcon icon={faExclamation} />
+                    <strong className="me-auto ms-2">Regitration Successful</strong>
+                    <Button variant="close" size="xs" onClick={toggleSuccessToast} />
+                  </Toast.Header>
+                  <Toast.Body >
+                    Registration Successful! Please sign in using the sign in page.
                   </Toast.Body>
                 </Toast>
               </div>

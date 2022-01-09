@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Routes } from "../routes";
+import { useSelector } from 'react-redux';
 
 // pages
 import Presentation from "./Presentation";
@@ -8,6 +9,7 @@ import Upgrade from "./Upgrade";
 import DashboardOverview from "./dashboard/DashboardOverview";
 import Transactions from "./Transactions";
 import Settings from "./Settings";
+import Info from './Info';
 import BootstrapTables from "./tables/BootstrapTables";
 import Signin from "./examples/Signin";
 import Signup from "./examples/Signup";
@@ -50,7 +52,8 @@ import Tooltips from "./components/Tooltips";
 import Toasts from "./components/Toasts";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const isAuthenticated = false
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+
   return (
     <Route {...rest} render={props => (
       isAuthenticated === true ?
@@ -59,8 +62,9 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-const RouteWithSidebar = ({ component: Component, ...rest }) => {
+const ProtectedRouteWithSidebar = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false);
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 1000);
@@ -79,7 +83,7 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
   }
 
   return (
-    <Route {...rest} render={props => (
+    <Route {...rest} render={props => (isAuthenticated ? (
       <>
         <Preloader show={loaded ? false : true} />
         <Sidebar />
@@ -87,10 +91,9 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
         <main className="content">
           <Navbar />
           <Component {...props} />
-          <Footer toggleSettings={toggleSettings} showSettings={showSettings} />
         </main>
       </>
-    )}
+    ) : <Redirect to={Routes.Signup.path} />)}
     />
   );
 };
@@ -100,7 +103,7 @@ export default () => (
 
     <Route exact path={Routes.Signin.path} component={Signin} />
     <Route exact path={Routes.Signup.path} component={Signup} />
-    <ProtectedRoute exact path='/' component={Presentation} />
+    {/* <ProtectedRoute exact path='/' component={Presentation} /> */}
     {/* <RouteWithLoader exact path={Routes.ForgotPassword.path} component={ForgotPassword} />
     <RouteWithLoader exact path={Routes.ResetPassword.path} component={ResetPassword} />
     <RouteWithLoader exact path={Routes.Lock.path} component={Lock} />
@@ -108,10 +111,10 @@ export default () => (
     <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} /> */}
 
     pages
-    {/* <RouteWithSidebar exact path={Routes.DashboardOverview.path} component={DashboardOverview} />
-    <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} />
-    <RouteWithSidebar exact path={Routes.Transactions.path} component={Transactions} />
-    <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
+    <ProtectedRouteWithSidebar exact path="/info" component={Info} />
+    {/* <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} /> */}
+    <ProtectedRouteWithSidebar exact path={Routes.Info.path} component={Info} />
+    {/* <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} /> */}
 
     {/* components */}
