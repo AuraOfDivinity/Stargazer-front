@@ -50,6 +50,7 @@ import Tables from "./components/Tables";
 import Tabs from "./components/Tabs";
 import Tooltips from "./components/Tooltips";
 import Toasts from "./components/Toasts";
+import Location from './Location';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
@@ -114,6 +115,7 @@ export default () => (
     <ProtectedRouteWithSidebar exact path="/info" component={Info} />
     {/* <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} /> */}
     <ProtectedRouteWithSidebar exact path={Routes.Info.path} component={Info} />
+    <ProtectedRouteWithSidebar exact path={Routes.Location.path} component={Location} />
     {/* <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} /> */}
 

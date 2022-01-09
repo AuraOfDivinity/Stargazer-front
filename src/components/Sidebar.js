@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSatellite, faExclamation, faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faSatellite, faLocationArrow, faExclamation, faBook, faBoxOpen, faChartPie, faCog, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faCalendarAlt, faMapPin, faInbox, faRocket, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -98,6 +98,7 @@ export default (props = {}) => {
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
               <NavItem title="How to use?" link='/' icon={faInfoCircle} link={Routes.Transactions.path} />
+              <NavItem title="Location" icon={faLocationArrow} link={Routes.Location.path} />
               <NavItem title="Nearby Satellites" icon={faSatellite} link={Routes.Transactions.path} />
               <NavItem title="Subscribed Satellites" icon={faExclamation} link={Routes.Settings.path} />
 
