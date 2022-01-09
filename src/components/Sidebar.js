@@ -97,9 +97,9 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="How to use?" link='/' icon={faInfoCircle} link={Routes.Transactions.path} />
+              <NavItem title="How to use?" link='/' icon={faInfoCircle} link={Routes.Info.path} />
               <NavItem title="Location" icon={faLocationArrow} link={Routes.Location.path} />
-              <NavItem title="Nearby Satellites" icon={faSatellite} link={Routes.Transactions.path} />
+              <NavItem title="Nearby Satellites" icon={faSatellite} link={Routes.Nearby.path} />
               <NavItem title="Subscribed Satellites" icon={faExclamation} link={Routes.Settings.path} />
 
             </Nav>

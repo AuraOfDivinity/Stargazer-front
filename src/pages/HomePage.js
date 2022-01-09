@@ -10,6 +10,7 @@ import DashboardOverview from "./dashboard/DashboardOverview";
 import Transactions from "./Transactions";
 import Settings from "./Settings";
 import Info from './Info';
+import Nearby from './Nearby';
 import BootstrapTables from "./tables/BootstrapTables";
 import Signin from "./examples/Signin";
 import Signup from "./examples/Signup";
@@ -113,6 +114,7 @@ export default () => (
 
     pages
     <ProtectedRouteWithSidebar exact path="/info" component={Info} />
+    <ProtectedRouteWithSidebar exact path={Routes.Nearby.path} component={Nearby} />
     {/* <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} /> */}
     <ProtectedRouteWithSidebar exact path={Routes.Info.path} component={Info} />
     <ProtectedRouteWithSidebar exact path={Routes.Location.path} component={Location} />

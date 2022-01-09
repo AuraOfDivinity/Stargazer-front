@@ -5,6 +5,7 @@ export const Routes = {
     DashboardOverview: { path: "/dashboard/overview" },
     Transactions: { path: "/transactions" },
     Info: { path: "/info" },
+    Nearby: { path: "/nearby" },
     Location: { path: "/location" },
     Settings: { path: "/settings" },
     Upgrade: { path: "/upgrade" },
