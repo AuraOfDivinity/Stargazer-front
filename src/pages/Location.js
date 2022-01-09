@@ -4,6 +4,7 @@ import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-ic
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Card } from '@themesberg/react-bootstrap';
 import AccordionComponent from "../components/AccordionComponent";
 import { TransactionsTable } from "../components/Tables";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 
 export default () => {
@@ -25,16 +26,19 @@ export default () => {
                 </Card.Body>
             </div> */}
 
-            <Row>
-                <Col xl={12} xs={12}>
-                    <Card border="light" className="bg-white shadow-sm mb-4">
-                        <Card.Body>
-                            <h5 className="mb-4">Select Your Location.</h5>
 
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
+            <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={[51.505, -0.09]}>
+                    <Popup>
+                        A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
+                </Marker>
+            </MapContainer>
+
         </>
     );
 };
