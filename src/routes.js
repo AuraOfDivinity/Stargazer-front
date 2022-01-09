@@ -7,6 +7,7 @@ export const Routes = {
     Info: { path: "/info" },
     Nearby: { path: "/nearby" },
     Location: { path: "/location" },
+    Passes: { path: "/passes" },
     Settings: { path: "/settings" },
     Upgrade: { path: "/upgrade" },
     BootstrapTables: { path: "/tables/bootstrap-tables" },

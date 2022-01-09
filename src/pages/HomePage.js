@@ -11,6 +11,7 @@ import Transactions from "./Transactions";
 import Settings from "./Settings";
 import Info from './Info';
 import Nearby from './Nearby';
+import Passes from './Passes';
 import BootstrapTables from "./tables/BootstrapTables";
 import Signin from "./examples/Signin";
 import Signup from "./examples/Signup";
@@ -118,6 +119,7 @@ export default () => (
     {/* <RouteWithSidebar exact path={Routes.Upgrade.path} component={Upgrade} /> */}
     <ProtectedRouteWithSidebar exact path={Routes.Info.path} component={Info} />
     <ProtectedRouteWithSidebar exact path={Routes.Location.path} component={Location} />
+    <ProtectedRouteWithSidebar exact path={Routes.Passes.path} component={Passes} />
     {/* <RouteWithSidebar exact path={Routes.Settings.path} component={Settings} />
     <RouteWithSidebar exact path={Routes.BootstrapTables.path} component={BootstrapTables} /> */}
 
